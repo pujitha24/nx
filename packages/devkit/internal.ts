@@ -116,6 +116,7 @@ export { parseNxDirectives } from './src/utils/nx-directives';
 export { applyTestFileDirectives } from './src/utils/test-file-directives';
 export { hasUltracacheImportsDirective } from './src/utils/ultracache-directive';
 export { logShowProjectCommand } from './src/utils/log-show-project-command';
+export { getReadyWhenHost } from './src/utils/ready-when-host';
 export { eachValueFrom } from './src/utils/rxjs-for-await';
 export { checkAndCleanWithSemver } from './src/utils/semver';
 export {
