@@ -351,6 +351,24 @@ describe('setup-ai-agents generator', () => {
         expect(content).toContain('Existing content');
       });
 
+      it('should NOT overwrite a CLAUDE.md nx block that only imports AGENTS.md', async () => {
+        const claudeMd = `<!-- nx configuration start-->
+<!-- Leave the start & end comments to automatically receive updates. -->
+
+@AGENTS.md
+
+<!-- nx configuration end-->
+`;
+        tree.write('CLAUDE.md', claudeMd);
+
+        await setupAiAgentsGenerator(tree, {
+          directory: '.',
+          agents: ['claude'],
+        });
+
+        expect(tree.read('CLAUDE.md', 'utf-8')).toEqual(claudeMd);
+      });
+
       it('should NOT generate CLAUDE.md when claude is not in agents array', async () => {
         const options: SetupAiAgentsGeneratorSchema = {
           directory: '.',

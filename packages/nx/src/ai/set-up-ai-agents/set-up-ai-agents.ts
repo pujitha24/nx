@@ -521,6 +521,11 @@ function writeAgentRules(tree: Tree, path: string, writeNxCloudRules: boolean) {
         .replace(nxRulesMarkerCommentDescription, '')
         .replace(/\s/g, '');
 
+    // a block that only imports AGENTS.md is a deliberate way to share one file
+    if (contentOnly(existingNxConfiguration[0]) === '@AGENTS.md') {
+      return;
+    }
+
     // we don't want to make updates on whitespace-only changes
     if (
       contentOnly(existingNxConfiguration[0]) === contentOnly(expectedRules)
